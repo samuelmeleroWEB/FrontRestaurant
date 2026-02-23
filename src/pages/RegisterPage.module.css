@@ -1,0 +1,143 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f3f4f6; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0; /* Aseguramos que no haya margenes externos */
+}
+
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  width: 90%;
+  max-width: 500px;
+  min-height: 650px; /* Altura fija para que Login y Register midan lo mismo */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra el contenido internamente */
+  text-align: center;
+  z-index: 10;
+  box-sizing: border-box;
+}
+select.input {
+  appearance: none; /* Quita la flecha por defecto del navegador */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  cursor: pointer;
+  color: #4b5563;
+}
+.iconContainer {
+  color: #4caf50;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  color: #4b5563;
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.formGroup {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 8px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%; /* Asegura que el contenedor del input ocupe todo */
+}
+
+.input {
+  color: black;
+  width: 100%;
+  height: 45px; /* Altura fija para que ambos sean idénticos */
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box; /* CRUCIAL: El ancho será igual incluyendo padding */
+}
+
+.input:focus {
+  border-color: #4caf50;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 12px;
+  color: #9ca3af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.loginButton {
+  width: 100%;
+  height: 45px; /* Misma altura que los inputs para armonía visual */
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.loginButton:hover {
+  background-color: #43a047;
+}
+
+.footerText {
+  margin-top: 25px;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.signUpLink {
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+.successMessage {
+    background-color: #ecfdf5;
+    color: #059669;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    margin-bottom: 20px;
+    border: 1px solid #10b981;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
