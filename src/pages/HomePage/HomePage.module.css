@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  height: 100vh; /* La pantalla entera */
+  width: 100vw;
+  overflow: hidden; /* Evita que el body haga scroll */
+}
+.mainContent {
+  flex: 1;
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.headerIcons {
+  display: flex;
+  gap: 1rem;
+  color: #666;
+}
+.title {
+  font-size: 1.5rem;
+  color: #1a1a1a; /* Para asegurarnos que no se vea blanco */
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.refreshBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

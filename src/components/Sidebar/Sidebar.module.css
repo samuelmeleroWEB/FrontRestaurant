@@ -1,0 +1,109 @@
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background-color: #ffffff;
+  border-right: 1px solid #eef0f2;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-sizing: border-box; /* Evita que el padding sume altura */
+  position: sticky;
+  top: 0;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+  flex-shrink: 0;
+  width: 100%; /* Asegura que no se pase del padre */
+}
+.logoText {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  line-height: 1.1; /* Un poco más apretado para que el span quede cerca */
+  word-break: break-word; /* Permite que la palabra rompa si es necesario */
+}
+.logoText span {
+  display: block; /* Fuerza a "Management" a ir debajo si no hay sitio */
+  font-weight: 400;
+  color: #666;
+  font-size: 0.95rem; /* Un pelín más pequeño para que encaje mejor */
+}
+.nav {
+  flex: 1; /* Ocupa el espacio central y empuja al usuario hacia abajo */
+  min-height: 0; /* Permite que la sección se encoja sin romper el layout */
+  overflow-y: auto; /* Solo esta zona tendrá scroll si hay muchos links */
+  margin-bottom: 1rem;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.nav li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  margin-bottom: 4px;
+  border-radius: 8px;
+  color: #6c757d;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav li:hover, .nav li.active {
+  background-color: #f0fdf4;
+  color: #2D6A4F;
+}
+
+.userProfile {
+  flex-shrink: 0; /* Garantiza que el perfil esté siempre visible */
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.userInfo {
+  min-width: 0; /* Permite que el texto se corte si es muy largo */
+}
+
+.userName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userRole {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0;
+}
+
+.logoutBtn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+}

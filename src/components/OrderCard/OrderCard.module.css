@@ -1,0 +1,77 @@
+.card {
+  background: #ffffff !important;
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.orderId {
+  color: #1a1a1a !important; /* Negro fuerte */
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.statusBadge {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Colores de estados con alto contraste */
+.pendiente { background: #fff7ed; color: #c2410c !important; border: 1px solid #fdba74; }
+.cocinando { background: #fefce8; color: #a16207 !important; border: 1px solid #fef08a; }
+.listo { background: #f0fdf4; color: #15803d !important; border: 1px solid #bbf7d0; }
+.servido { background: #eff6ff; color: #1d4ed8 !important; border: 1px solid #bfdbfe; }
+
+.tableInfo {
+  color: #444444 !important; /* Gris oscuro */
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 1rem;
+}
+
+.items { 
+  color: #666666 !important; 
+  font-size: 0.9rem; 
+  font-weight: 500;
+}
+
+.price { 
+  font-weight: 800; 
+  font-size: 1.15rem; 
+  color: #1a1a1a !important; 
+}
+
+/* Estilo para cuando la tarjeta se está actualizando (opcional) */
+.updating {
+  opacity: 0.6;
+  pointer-events: none;
+}
