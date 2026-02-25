@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'http://localhost:4000/api', 
+    // Importante: usamos import.meta.env para acceder a las variables en Vite
+    baseURL: import.meta.env.VITE_API_URL, 
     withCredentials: true
 });
 
