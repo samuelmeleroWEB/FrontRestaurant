@@ -3,14 +3,12 @@ import { useAuth } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage/HomePage';
+import MenuPage from './pages/MenuPage/MenuPage'; 
 
-// Componente para proteger rutas
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
-
   if (loading) return <div>Cargando...</div>;
   if (!user) return <Navigate to="/login" />;
-
   return children;
 };
 
@@ -22,7 +20,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         
-        {/* Ruta Protegida */}
+        {/* Rutas Protegidas */}
         <Route 
           path="/" 
           element={
@@ -32,7 +30,16 @@ function App() {
           } 
         />
 
-        {/* Redirección por defecto si la ruta no existe */}
+        <Route 
+          path="/menu" 
+          element={
+            <ProtectedRoute>
+              <MenuPage />
+            </ProtectedRoute>
+          } 
+        />
+
+        {/* Redirección por defecto */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

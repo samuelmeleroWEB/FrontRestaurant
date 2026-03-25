@@ -4,38 +4,29 @@ import styles from "./OrderCard.module.css";
 
 const OrderCard = ({ order, onOrderUpdate }) => {
   const [loading, setLoading] = useState(false);
-
-  // 1. Sincronizado con ORDER_STATUS de tu backend (español y minúsculas)
   const statuses = ["pendiente", "cocinando", "listo", "servido"];
 
   const handleStatusChange = async (newStatus) => {
-    // Limpiamos el valor por si acaso
     const cleanStatus = newStatus.toLowerCase().trim();
-
     try {
       setLoading(true);
       const res = await axios.patch(`/orders/${order._id}/status`, {
         status: cleanStatus,
       });
-
       if (onOrderUpdate) onOrderUpdate(res.data);
     } catch (error) {
-      // Aquí verás si el backend sigue diciendo "Estado no válido"
       console.error("Error al actualizar:", error.response?.data);
       alert(error.response?.data?.message || "Error al actualizar");
     } finally {
       setLoading(false);
     }
   };
-  // 2. Ajustado para usar los nombres del backend como nombres de clase CSS
+
   const getStatusClass = (status) => {
     if (!status) return "";
-    const s = status.toLowerCase();
-    // Esto buscará en tu CSS .pendiente, .cocinando, etc.
-    return styles[s] || "";
+    return styles[status.toLowerCase()] || "";
   };
 
-  // Formateo de hora (opcional, para mayor claridad)
   const formatTime = (dateString) => {
     if (!dateString) return "";
     return new Date(dateString).toLocaleTimeString([], {
@@ -47,33 +38,37 @@ const OrderCard = ({ order, onOrderUpdate }) => {
   return (
     <div className={`${styles.card} ${loading ? styles.updating : ""}`}>
       <div className={styles.cardHeader}>
-        <h3 className={styles.orderId}>
-          Order #{order.orderNumber || order._id.slice(-4)}
-        </h3>
+        <div className={styles.orderIdentity}>
+          <h3 className={styles.tableName}>
+            {order.table?.number ? `Mesa ${order.table.number}` : "Para llevar"}
+          </h3>
+          <span className={styles.orderTag}>
+            ID: {order.orderNumber || order._id.slice(-4)}
+          </span>
+        </div>
 
         <select
           className={`${styles.statusBadge} ${getStatusClass(order.status)}`}
           value={order.status?.toLowerCase()}
           onChange={(e) => handleStatusChange(e.target.value)}
           disabled={loading}
-          // AÑADE ESTO:
           onClick={(e) => e.stopPropagation()}
         >
           {statuses.map((s) => (
             <option key={s} value={s}>
-              {s.charAt(0).toUpperCase() + s.slice(1)}
+              {s.toUpperCase()}
             </option>
           ))}
         </select>
       </div>
 
-      <p className={styles.tableInfo}>
-        Mesa {order.table?.number || "S/N"} — {formatTime(order.createdAt)}
-      </p>
+      <span className={styles.timeInfo}>
+        Pedido a las {formatTime(order.createdAt)}
+      </span>
 
       <div className={styles.cardFooter}>
-        <span className={styles.items}>
-          {order.items?.reduce((acc, i) => acc + i.quantity, 0) || 0} items
+        <span className={styles.itemsCount}>
+          {order.items?.reduce((acc, i) => acc + i.quantity, 0) || 0} productos
         </span>
         <span className={styles.price}>
           ${(order.totalAmount || order.total || 0).toFixed(2)}

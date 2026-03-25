@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
-  box-sizing: border-box; /* Evita que el padding sume altura */
+  box-sizing: border-box;
   position: sticky;
   top: 0;
 }
@@ -17,25 +17,28 @@
   gap: 12px;
   margin-bottom: 2rem;
   flex-shrink: 0;
-  width: 100%; /* Asegura que no se pase del padre */
+  width: 100%;
 }
+
 .logoText {
   font-size: 1.1rem;
   font-weight: 700;
   color: #333;
-  line-height: 1.1; /* Un poco más apretado para que el span quede cerca */
-  word-break: break-word; /* Permite que la palabra rompa si es necesario */
+  line-height: 1.1;
+  word-break: break-word;
 }
+
 .logoText span {
-  display: block; /* Fuerza a "Management" a ir debajo si no hay sitio */
+  display: block;
   font-weight: 400;
   color: #666;
-  font-size: 0.95rem; /* Un pelín más pequeño para que encaje mejor */
+  font-size: 0.95rem;
 }
+
 .nav {
-  flex: 1; /* Ocupa el espacio central y empuja al usuario hacia abajo */
-  min-height: 0; /* Permite que la sección se encoja sin romper el layout */
-  overflow-y: auto; /* Solo esta zona tendrá scroll si hay muchos links */
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   margin-bottom: 1rem;
 }
 
@@ -45,30 +48,47 @@
 }
 
 .nav li {
+  margin-bottom: 4px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.navLink {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
-  margin-bottom: 4px;
-  border-radius: 8px;
   color: #6c757d;
-  cursor: pointer;
-  transition: 0.2s;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .nav li:hover, .nav li.active {
   background-color: #f0fdf4;
+}
+
+.nav li:hover .navLink, .nav li.active .navLink {
   color: #2D6A4F;
+  font-weight: 600;
 }
 
 .userProfile {
-  flex-shrink: 0; /* Garantiza que el perfil esté siempre visible */
+  flex-shrink: 0;
   margin-top: auto;
   display: flex;
   align-items: center;
   gap: 12px;
   padding-top: 1rem;
   border-top: 1px solid #eee;
+}
+
+.profileClickable {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  min-width: 0;
 }
 
 .avatar {
@@ -80,7 +100,7 @@
 }
 
 .userInfo {
-  min-width: 0; /* Permite que el texto se corte si es muy largo */
+  min-width: 0;
 }
 
 .userName {
@@ -106,4 +126,12 @@
   padding: 8px;
   margin-left: auto;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.logoutBtn:hover {
+  background-color: #fef2f2;
 }
