@@ -1,0 +1,134 @@
+.overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  width: 95%;
+  max-width: 450px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.titleArea h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.orderId {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.closeBtn {
+  background: #f3f4f6;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  transition: background 0.2s;
+}
+
+.closeBtn:hover {
+  background: #e5e7eb;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+.statusLabel {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.itemsList h3 {
+  font-size: 1rem;
+  color: #666;
+  border-bottom: 2px solid #f3f4f6;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0;
+}
+
+.quantity {
+  font-weight: 800;
+  color: #2d6a4f;
+  background: #f0fdf4;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-right: 12px;
+  font-size: 0.9rem;
+}
+
+.productName {
+  flex-grow: 1;
+  font-weight: 500;
+  color: #374151;
+}
+
+.itemPrice {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.footer {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px dashed #e5e7eb;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total label {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.totalAmount {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #1a1a1a;
+}
+
+/* Colores de estado */
+.pendiente { color: #c2410c; }
+.cocinando { color: #a16207; }
+.listo { color: #15803d; }
+.servido { color: #1d4ed8; }

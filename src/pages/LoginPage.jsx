@@ -1,21 +1,34 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ConciergeBell, Eye, EyeOff } from 'lucide-react'; // Importamos ambos estados del ojo
+import { ConciergeBell, Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '../context/AuthContext'; // Importamos el hook
 import axios from '../api/axios';
 import styles from './LoginPage.module.css';
 
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false); // Estado para mostrar/ocultar
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
+    
+    const { login } = useAuth(); // Extraemos la función login del contexto
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(''); // Limpiamos errores previos antes de intentar
+
         try {
             const res = await axios.post('/auth/login', { email, password });
-            localStorage.setItem('token', res.data.token); 
+            
+            // Pasamos los datos del usuario al contexto global
+            // Esto activará el estado "user" y permitirá el acceso a rutas protegidas
+            login(res.data.user || res.data); 
+            
+            // Ya no es estrictamente necesario el localStorage manual aquí 
+            // si tu AuthContext ya maneja la persistencia o el backend usa cookies.
+            if(res.data.token) localStorage.setItem('token', res.data.token); 
+
             navigate('/'); 
         } catch (err) {
             setError(err.response?.data?.message || 'Credenciales incorrectas');
@@ -31,7 +44,7 @@ function LoginPage() {
                 
                 <h2 className={styles.title}>Restaurant Management System</h2>
 
-                {error && <p style={{ color: '#ef4444', fontSize: '0.8rem', marginBottom: '10px' }}>{error}</p>}
+                {error && <p style={{ color: '#ef4444', fontSize: '0.8rem', marginBottom: '10px', textAlign: 'center' }}>{error}</p>}
                 
                 <form onSubmit={handleSubmit}>
                     <div className={styles.formGroup}>
@@ -50,14 +63,13 @@ function LoginPage() {
                         <label className={styles.label}>Password</label>
                         <div className={styles.inputWrapper}>
                             <input 
-                                type={showPassword ? "text" : "password"} // Cambia el tipo dinámicamente
+                                type={showPassword ? "text" : "password"}
                                 className={styles.input} 
                                 placeholder="Enter your password" 
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
-                            {/* Icono que cambia y alterna el estado al hacer clic */}
                             <span 
                                 className={styles.eyeIcon} 
                                 onClick={() => setShowPassword(!showPassword)}
